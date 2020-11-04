@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/tv_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -17,53 +17,53 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnCounter1"
+        android:id="@+id/btn_counter_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv1"
+        android:layout_below="@id/tv_1"
         android:layout_marginStart="100dp"
         android:text="Количество = 0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv1" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_1" />
 
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/tv_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnCounter1"
+        android:layout_below="@id/btn_counter_1"
         android:layout_marginStart="100dp"
         android:text="Счетчик 2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCounter1" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_counter_1" />
 
     <Button
-        android:id="@+id/btnCounter2"
+        android:id="@+id/btn_counter_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv2"
+        android:layout_below="@id/tv_2"
         android:layout_marginStart="100dp"
         android:text="Количество = 0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_2" />
 
     <TextView
-        android:id="@+id/tv3"
+        android:id="@+id/tv_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnCounter2"
+        android:layout_below="@id/btn_counter_2"
         android:layout_marginStart="100dp"
         android:text="Счетчик 3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCounter2" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_counter_2" />
 
     <Button
-        android:id="@+id/btnCounter3"
+        android:id="@+id/btn_counter_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv3"
+        android:layout_below="@id/tv_3"
         android:layout_marginStart="100dp"
         android:text="Количество = 0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv3" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
