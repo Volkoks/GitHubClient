@@ -18,8 +18,8 @@ interface ForViewAndModel {
      * Подинтерфейс для Presenter
      */
     interface forPresenter {
-        fun initBtn1()
-        fun initBtn2()
-        fun initBtn3()
+        fun initBtn1(index:Int)
+        fun initBtn2(index:Int)
+        fun initBtn3(index:Int)
     }
 }
