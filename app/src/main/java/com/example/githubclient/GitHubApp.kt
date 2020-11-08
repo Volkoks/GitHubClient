@@ -8,7 +8,14 @@ import ru.terrakok.cicerone.Router
 class GitHubApp : Application() {
 
     companion object {
-        lateinit var cicerone: Cicerone<Router>
+        private lateinit var cicerone: Cicerone<Router>
+
+        fun getRouter(): Router {
+            return cicerone.router
+        }
+        fun navigateHolder(): NavigatorHolder {
+            return cicerone.navigatorHolder
+        }
     }
 
     override fun onCreate() {
@@ -18,13 +25,5 @@ class GitHubApp : Application() {
 
     private fun initCicerone() {
         cicerone = Cicerone.create()
-    }
-
-    fun getRouter(): Router {
-        return cicerone.router
-    }
-
-    fun navigateHolder(): NavigatorHolder {
-        return cicerone.navigatorHolder
     }
 }
