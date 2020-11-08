@@ -1,6 +1,6 @@
-package com.example.githubclient.mvp.repository
+package com.example.githubclient.mvp.model.repository
 
-import com.example.githubclient.mvp.entity.GitHubUser
+import com.example.githubclient.mvp.model.entity.GitHubUser
 
 object GitHubRepo {
     var repository:List<GitHubUser> = listOf(
