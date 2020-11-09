@@ -11,13 +11,14 @@ import com.example.githubclient.R
 import com.example.githubclient.mvp.model.repository.GitHubUsersRepo
 import com.example.githubclient.mvp.presenter.UsersPresenter
 import com.example.githubclient.mvp.view.UserView
+import com.example.githubclient.ui.BackButtonListener
 import com.example.githubclient.ui.adapter.UserRVAdapter
 import kotlinx.android.synthetic.main.fragment_user.*
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
 
-class UserFragment : MvpAppCompatFragment(), UserView {
+class UserFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
 
 
     companion object {
@@ -36,15 +37,10 @@ class UserFragment : MvpAppCompatFragment(), UserView {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    )= View.inflate(context,R.layout.fragment_user,null)
+    ) = View.inflate(context, R.layout.fragment_user, null)
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-       }
 
     override fun init() {
-        user_recycler_view.setHasFixedSize(true)
         user_recycler_view.layoutManager =
             LinearLayoutManager(context)
         adapter = UserRVAdapter(presenter.usersListPresenter)
@@ -55,6 +51,8 @@ class UserFragment : MvpAppCompatFragment(), UserView {
     override fun updateList() {
         adapter?.notifyDataSetChanged()
     }
+
+    override fun backPressed(): Boolean = presenter.backPressed()
 
 
 }
