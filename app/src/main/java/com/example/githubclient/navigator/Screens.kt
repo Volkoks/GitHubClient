@@ -4,10 +4,8 @@ import androidx.fragment.app.Fragment
 import com.example.githubclient.ui.fragments.UserFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
-sealed class Screens {
+class Screens {
     class UsersScreen : SupportAppScreen() {
-        override fun getFragment(): Fragment? {
-            return UserFragment.getInstance(0)
-        }
+        override fun getFragment() = UserFragment.newInstance()
     }
 }
