@@ -31,9 +31,9 @@ class UsersPresenter(val userRepo: GitHubUsersRepo,val router: Router) : MvpPres
         super.onFirstViewAttach()
         viewState.init()
         loadData()
-        usersListPresenter.itemClickListener= {
-
-        }
+//        usersListPresenter.itemClickListener= {
+//
+//        }
     }
 
     private fun loadData() {
