@@ -2,7 +2,7 @@ package com.example.githubclient.mvp.model.repository
 
 import com.example.githubclient.mvp.model.entity.GitHubUser
 
-class GitHubRepo {
+class GitHubUsersRepo {
     private val repository = listOf(
         GitHubUser("login1"),
         GitHubUser("login2"),
