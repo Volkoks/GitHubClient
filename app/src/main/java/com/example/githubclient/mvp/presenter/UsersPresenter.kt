@@ -10,7 +10,8 @@ import com.example.githubclient.navigator.Screens
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
 
-class UsersPresenter(val userRepo: GitHubUsersRepo,val router: Router) : MvpPresenter<UsersView>() {
+class UsersPresenter(val userRepo: GitHubUsersRepo, val router: Router) :
+    MvpPresenter<UsersView>() {
 
     class UserListPresenter : IUserListPresenter {
         val users = mutableListOf<GitHubUser>()
@@ -32,8 +33,9 @@ class UsersPresenter(val userRepo: GitHubUsersRepo,val router: Router) : MvpPres
         super.onFirstViewAttach()
         viewState.init()
         loadData()
-        usersListPresenter.itemClickListener= {
-            router.navigateTo(Screens.UserScreen())
+        usersListPresenter.itemClickListener = {
+            var user: GitHubUser = usersListPresenter.users[it.pos]
+            router.navigateTo(Screens.UserScreen(user))
         }
     }
 
@@ -42,7 +44,8 @@ class UsersPresenter(val userRepo: GitHubUsersRepo,val router: Router) : MvpPres
         usersListPresenter.users.addAll(users)
         viewState.updateList()
     }
-    fun backPressed():Boolean{
+
+    fun backPressed(): Boolean {
         router.exit()
         return true
     }
