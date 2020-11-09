@@ -22,8 +22,8 @@ class UserRVAdapter(val presenter: IUserListPresenter) :
         holder.pos = position
         holder.containerView.setOnClickListener {
             presenter.itemClickListener?.invoke(holder)
-            presenter.bindView(holder)
         }
+        presenter.bindView(holder)
     }
 
     override fun getItemCount() = presenter.getCount()
@@ -33,8 +33,7 @@ class UserRVAdapter(val presenter: IUserListPresenter) :
         RecyclerView.ViewHolder(containerView), LayoutContainer, UserItemView {
         override var pos = -1
 
-        override fun setLogin(text: String) =
-            with(containerView) {
+        override fun setLogin(text: String) = with(containerView){
                 login_tv.text = text
             }
 
