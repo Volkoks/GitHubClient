@@ -1,19 +1,19 @@
 package com.example.githubclient
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.githubclient.mvp.presenter.MainPresenter
 import com.example.githubclient.mvp.view.MainView
+import com.example.githubclient.ui.BackButtonListener
 import moxy.MvpAppCompatActivity
-import moxy.presenter.InjectPresenter
+import moxy.ktx.moxyPresenter
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
-class MainActivity : MvpAppCompatActivity(),MainView {
-    @InjectPresenter
-    lateinit var presenter: MainPresenter
+class MainActivity : MvpAppCompatActivity(), MainView {
 
-    private val navigatorHolder = GitHubApp.navigateHolder()
-    private val navigator = SupportAppNavigator(this,supportFragmentManager,R.id.container)
+    val presenter: MainPresenter by moxyPresenter { MainPresenter(GitHubApp.instance.router) }
+
+    private val navigatorHolder = GitHubApp.instance.navigatorHolder
+    private val navigator = SupportAppNavigator(this, supportFragmentManager, R.id.container)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,4 +31,12 @@ class MainActivity : MvpAppCompatActivity(),MainView {
         navigatorHolder.removeNavigator()
     }
 
+    override fun onBackPressed() {
+        supportFragmentManager.fragments.forEach {
+            if (it is BackButtonListener && it.backPressed()) {
+                return
+            }
+            presenter.backClicked()
+        }
+    }
 }
