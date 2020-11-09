@@ -2,8 +2,8 @@ package com.example.githubclient.mvp.model.repository
 
 import com.example.githubclient.mvp.model.entity.GitHubUser
 
-object GitHubRepo {
-    var repository:List<GitHubUser> = listOf(
+class GitHubRepo {
+    private val repository = listOf(
         GitHubUser("login1"),
         GitHubUser("login2"),
         GitHubUser("login3"),
@@ -13,4 +13,8 @@ object GitHubRepo {
         GitHubUser("login7"),
         GitHubUser("login8"),
     )
+
+    fun getUsers(): List<GitHubUser> {
+        return repository
+    }
 }
