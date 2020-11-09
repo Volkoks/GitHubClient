@@ -10,7 +10,7 @@ class Screens {
     class UsersScreen : SupportAppScreen() {
         override fun getFragment() = UsersFragment.newInstance()
     }
-    class UserScreen(): SupportAppScreen(){
-        override fun getFragment() = UserFragment.newInstance()
+    class UserScreen(val user: GitHubUser): SupportAppScreen(){
+        override fun getFragment() = UserFragment.newInstance(user)
     }
 }
