@@ -34,7 +34,7 @@ class UsersPresenter(val userRepo: GitHubUsersRepo, val router: Router) :
         viewState.init()
         loadData()
         usersListPresenter.itemClickListener = {
-            var user: GitHubUser = usersListPresenter.users[it.pos]
+            val user: GitHubUser = usersListPresenter.users[it.pos]
             router.navigateTo(Screens.UserScreen(user))
         }
     }
