@@ -4,16 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.githubclient.GitHubApp
 import com.example.githubclient.R
 import com.example.githubclient.mvp.model.entity.GitHubUser
 import com.example.githubclient.mvp.presenter.UserPresenter
 import com.example.githubclient.mvp.view.UserView
+import com.example.githubclient.ui.BackButtonListener
 import kotlinx.android.synthetic.main.fragment_user.*
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
 
-class UserFragment : MvpAppCompatFragment(), UserView {
+class UserFragment : MvpAppCompatFragment(), UserView,BackButtonListener{
 
     companion object {
         fun newInstance(user: GitHubUser): MvpAppCompatFragment {
@@ -25,7 +27,7 @@ class UserFragment : MvpAppCompatFragment(), UserView {
         }
     }
 
-    val presenter by moxyPresenter { UserPresenter(user) }
+    val presenter by moxyPresenter { UserPresenter(GitHubApp.instance.router) }
     var user: GitHubUser? = null
 
     override fun onCreateView(
@@ -40,4 +42,6 @@ class UserFragment : MvpAppCompatFragment(), UserView {
     override fun init() {
         user_name_tv.text = user?.login
     }
+
+    override fun backPressed() = presenter.backPressed()
 }
