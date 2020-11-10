@@ -1,34 +1,43 @@
 package com.example.githubclient.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.githubclient.R
 import com.example.githubclient.mvp.model.entity.GitHubUser
+import com.example.githubclient.mvp.presenter.UserPresenter
+import com.example.githubclient.mvp.view.UserView
 import kotlinx.android.synthetic.main.fragment_user.*
+import moxy.MvpAppCompatFragment
+import moxy.ktx.moxyPresenter
 
 
-class UserFragment : Fragment() {
-    companion object{
-        fun newInstance(user:GitHubUser):Fragment{
+class UserFragment : MvpAppCompatFragment(), UserView {
+
+    companion object {
+        fun newInstance(user: GitHubUser): MvpAppCompatFragment {
             val fragment = UserFragment()
             var bundle = Bundle()
-            bundle.putParcelable("user",user)
+            bundle.putParcelable("user", user)
             fragment.arguments = bundle
             return fragment
         }
-        var user:GitHubUser? = null
     }
+
+    val presenter by moxyPresenter { UserPresenter(user) }
+    var user: GitHubUser? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = View.inflate(context, R.layout.fragment_user, null)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    ): View {
+        val view = View.inflate(context, R.layout.fragment_user, null)
         user = arguments?.getParcelable("user")
+        return view
+    }
+
+    override fun init() {
         user_name_tv.text = user?.login
     }
 }
