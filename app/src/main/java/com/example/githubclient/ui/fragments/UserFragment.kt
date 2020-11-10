@@ -20,7 +20,7 @@ class UserFragment : MvpAppCompatFragment(), UserView,BackButtonListener{
     companion object {
         fun newInstance(user: GitHubUser): MvpAppCompatFragment {
             val fragment = UserFragment()
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putParcelable("user", user)
             fragment.arguments = bundle
             return fragment
@@ -28,7 +28,7 @@ class UserFragment : MvpAppCompatFragment(), UserView,BackButtonListener{
     }
 
     val presenter by moxyPresenter { UserPresenter(GitHubApp.instance.router) }
-    var user: GitHubUser? = null
+    private var user: GitHubUser? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
