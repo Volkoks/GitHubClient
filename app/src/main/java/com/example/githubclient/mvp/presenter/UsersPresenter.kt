@@ -40,8 +40,9 @@ class UsersPresenter(val userRepo: GitHubUsersRepo, val router: Router) :
     }
 
     private fun loadData() {
-        val users = userRepo.getUsers()
-        usersListPresenter.users.addAll(users)
+        userRepo.getUser()
+            .subscribe({ onNext -> usersListPresenter.users.addAll(onNext) },
+                { error -> "Ошибка: ${error}" })
         viewState.updateList()
     }
 
