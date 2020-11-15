@@ -5,13 +5,11 @@ import com.example.githubclient.mvp.model.entity.GitHubUser
 import com.example.githubclient.mvp.model.repository.GitHubUsersRepo
 import com.example.githubclient.mvp.presenter.list.IUserListPresenter
 import com.example.githubclient.mvp.view.UserItemView
-import com.example.githubclient.mvp.view.UsersView
-import com.example.githubclient.navigator.Screens
+import com.example.githubclient.mvp.view.UserView
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
 
-class UsersPresenter(val userRepo: GitHubUsersRepo, val router: Router) :
-    MvpPresenter<UsersView>() {
+class UsersPresenter(val userRepo: GitHubUsersRepo,val router: Router) : MvpPresenter<UserView>() {
 
     class UserListPresenter : IUserListPresenter {
         val users = mutableListOf<GitHubUser>()
@@ -33,10 +31,9 @@ class UsersPresenter(val userRepo: GitHubUsersRepo, val router: Router) :
         super.onFirstViewAttach()
         viewState.init()
         loadData()
-        usersListPresenter.itemClickListener = {
-            val user: GitHubUser = usersListPresenter.users[it.pos]
-            router.navigateTo(Screens.UserScreen(user))
-        }
+//        usersListPresenter.itemClickListener= {
+//
+//        }
     }
 
     private fun loadData() {
@@ -44,8 +41,7 @@ class UsersPresenter(val userRepo: GitHubUsersRepo, val router: Router) :
         usersListPresenter.users.addAll(users)
         viewState.updateList()
     }
-
-    fun backPressed(): Boolean {
+    fun backPressed():Boolean{
         router.exit()
         return true
     }
