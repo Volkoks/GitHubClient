@@ -11,5 +11,7 @@ data class GitHubUser(
     @Expose
     val login:String? = null,
     @Expose
-    val avatarUrl:String? = null
+    val avatarUrl:String? = null,
+    @Expose
+    val reposUrl:String? = null
 ):Parcelable
