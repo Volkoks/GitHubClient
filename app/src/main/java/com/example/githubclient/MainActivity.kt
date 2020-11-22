@@ -1,6 +1,7 @@
 package com.example.githubclient
 
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import com.example.githubclient.mvp.presenter.MainPresenter
 import com.example.githubclient.mvp.view.MainView
 import com.example.githubclient.ui.BackButtonListener
@@ -19,6 +20,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val toolbar: Toolbar = findViewById(R.id.my_toolbar)
+        setSupportActionBar(toolbar)
     }
 
     override fun onResumeFragments() {
@@ -36,7 +39,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             if (it is BackButtonListener && it.backPressed()) {
                 return
             }
-            presenter.backClicked()
         }
     }
 }
