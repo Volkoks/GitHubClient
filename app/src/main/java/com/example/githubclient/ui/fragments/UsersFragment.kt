@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubclient.GitHubApp
 import com.example.githubclient.R
+import com.example.githubclient.mvp.model.APP_NAME
 import com.example.githubclient.mvp.model.api.ApiHolder
 import com.example.githubclient.mvp.model.loader.GlideImageLoader
 import com.example.githubclient.mvp.model.repository.GitHubUsersRepo
@@ -57,6 +58,9 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     }
 
     override fun backPressed(): Boolean = presenter.backPressed()
-
+    override fun onResume() {
+        super.onResume()
+        activity?.title = APP_NAME
+    }
 
 }

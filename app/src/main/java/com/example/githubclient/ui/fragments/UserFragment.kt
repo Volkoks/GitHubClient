@@ -40,8 +40,9 @@ class UserFragment : MvpAppCompatFragment(), UserView,BackButtonListener{
     }
 
     override fun init() {
-        user_name_tv.text = user?.login
+      activity?.title = user?.login
     }
 
-    override fun backPressed() = presenter.backPressed()
+
+    override fun backPressed():Boolean = presenter.backPressed()
 }
