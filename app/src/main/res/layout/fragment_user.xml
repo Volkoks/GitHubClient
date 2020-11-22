@@ -5,5 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.fragments.UserFragment">
-
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/repos_user_rv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
