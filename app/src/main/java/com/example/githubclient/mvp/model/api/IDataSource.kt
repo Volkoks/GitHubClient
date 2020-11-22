@@ -15,5 +15,5 @@ interface IDataSource {
     fun loadUser(@Path("login") login: String): Single<GitHubUser>
 
     @GET
-    fun getReposUser(@Url url:String):Single<ReposGitHubUser>
+    fun getReposUser(@Url url:String):Single<List<ReposGitHubUser>>
 }
