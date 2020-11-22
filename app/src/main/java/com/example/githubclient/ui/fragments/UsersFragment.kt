@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubclient.GitHubApp
+import com.example.githubclient.app.GitHubApp
 import com.example.githubclient.R
 import com.example.githubclient.mvp.model.APP_NAME
 import com.example.githubclient.mvp.model.api.ApiHolder
 import com.example.githubclient.mvp.model.loader.GlideImageLoader
-import com.example.githubclient.mvp.model.repository.GitHubUsersRepo
 import com.example.githubclient.mvp.model.repository.RetrofitGitHubUsersRepo
 import com.example.githubclient.mvp.presenter.UsersPresenter
 import com.example.githubclient.mvp.view.UsersView

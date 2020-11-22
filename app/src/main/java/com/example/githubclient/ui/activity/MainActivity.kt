@@ -1,7 +1,9 @@
-package com.example.githubclient
+package com.example.githubclient.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import com.example.githubclient.app.GitHubApp
+import com.example.githubclient.R
 import com.example.githubclient.mvp.presenter.MainPresenter
 import com.example.githubclient.mvp.view.MainView
 import com.example.githubclient.ui.BackButtonListener

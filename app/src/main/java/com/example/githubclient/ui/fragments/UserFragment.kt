@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubclient.GitHubApp
+import com.example.githubclient.app.GitHubApp
 import com.example.githubclient.R
 import com.example.githubclient.mvp.model.api.ApiHolder
 import com.example.githubclient.mvp.model.entity.GitHubUser
