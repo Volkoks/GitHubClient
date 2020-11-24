@@ -6,6 +6,7 @@ import com.example.githubclient.mvp.model.repository.IGitHubUsersRepo
 import com.example.githubclient.mvp.presenter.list.IReposUserPresenter
 import com.example.githubclient.mvp.view.ReposUserItemView
 import com.example.githubclient.mvp.view.UserView
+import com.example.githubclient.navigator.Screens
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
@@ -17,7 +18,7 @@ class UserPresenter(
 ) :
     MvpPresenter<UserView>() {
 
-    class ReposUserPresenter : IReposUserPresenter {
+    class ReposUserListPresenter : IReposUserPresenter {
         var reposUserList = mutableListOf<ReposGitHubUser>()
         override var itemClickListener: ((ReposUserItemView) -> Unit)? = null
 
@@ -30,14 +31,17 @@ class UserPresenter(
         override fun getCount() = reposUserList.size
     }
 
-    val reposUserPresenter = ReposUserPresenter()
+    val reposUserPresenter = ReposUserListPresenter()
     var user: GitHubUser? = null
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.init()
         loadRepos()
-        viewState.updateList()
+        reposUserPresenter.itemClickListener = {
+            val repos = reposUserPresenter.reposUserList[it.pos]
+            router.navigateTo(Screens.ReposScreen(repos))
+        }
     }
 
     fun loadRepos() {
