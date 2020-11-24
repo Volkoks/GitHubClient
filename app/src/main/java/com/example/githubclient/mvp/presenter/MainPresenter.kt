@@ -12,7 +12,4 @@ class MainPresenter(val router: Router) : MvpPresenter<MainView>() {
         super.onFirstViewAttach()
         router.replaceScreen(Screens.UsersScreen())
     }
-    fun backClicked(){
-        router.exit()
-    }
 }

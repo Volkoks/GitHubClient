@@ -1,4 +1,4 @@
-package com.example.githubclient
+package com.example.githubclient.app
 
 import android.app.Application
 import ru.terrakok.cicerone.Cicerone
