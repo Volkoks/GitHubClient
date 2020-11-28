@@ -1,8 +1,9 @@
 package com.example.githubclient.mvp.presenter
 
-import com.example.githubclient.mvp.model.entity.GitHubUser
-import com.example.githubclient.mvp.model.entity.ReposGitHubUser
+import com.example.githubclient.mvp.model.retrofit.entity.GitHubUser
+import com.example.githubclient.mvp.model.retrofit.entity.ReposGitHubUser
 import com.example.githubclient.mvp.model.repository.IGitHubUsersRepo
+import com.example.githubclient.mvp.model.repository.IReposUserRepo
 import com.example.githubclient.mvp.presenter.list.IReposUserPresenter
 import com.example.githubclient.mvp.view.ReposUserItemView
 import com.example.githubclient.mvp.view.UserView
@@ -13,7 +14,7 @@ import ru.terrakok.cicerone.Router
 
 class UserPresenter(
     val mainThreadScheduler: Scheduler,
-    val usersRepo: IGitHubUsersRepo,
+    val usersRepo: IReposUserRepo,
     val router: Router
 ) :
     MvpPresenter<UserView>() {

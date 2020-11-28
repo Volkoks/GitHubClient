@@ -1,8 +1,7 @@
 package com.example.githubclient.navigator
 
-import androidx.fragment.app.Fragment
-import com.example.githubclient.mvp.model.entity.GitHubUser
-import com.example.githubclient.mvp.model.entity.ReposGitHubUser
+import com.example.githubclient.mvp.model.retrofit.entity.GitHubUser
+import com.example.githubclient.mvp.model.retrofit.entity.ReposGitHubUser
 import com.example.githubclient.ui.fragments.ReposFragment
 import com.example.githubclient.ui.fragments.UserFragment
 import com.example.githubclient.ui.fragments.UsersFragment

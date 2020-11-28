@@ -8,11 +8,16 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubclient.app.GitHubApp
 import com.example.githubclient.R
-import com.example.githubclient.mvp.model.api.ApiHolder
-import com.example.githubclient.mvp.model.entity.GitHubUser
+import com.example.githubclient.mvp.model.cache.room.RoomReposUserCache
+import com.example.githubclient.mvp.model.retrofit.api.ApiHolder
+import com.example.githubclient.mvp.model.retrofit.entity.GitHubUser
 import com.example.githubclient.mvp.model.repository.RetrofitGitHubUsersRepo
+import com.example.githubclient.mvp.model.repository.RetrofitReposUserRepo
+import com.example.githubclient.mvp.model.room.database.GitHubDatabase
+import com.example.githubclient.mvp.model.room.entity.RoomReposUser
 import com.example.githubclient.mvp.presenter.UserPresenter
 import com.example.githubclient.mvp.view.UserView
+import com.example.githubclient.network.AndroidNetworkStatus
 import com.example.githubclient.ui.BackButtonListener
 import com.example.githubclient.ui.adapter.ReposUserAdapter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -36,7 +41,11 @@ class UserFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
     val presenter by moxyPresenter {
         UserPresenter(
             AndroidSchedulers.mainThread(),
-            RetrofitGitHubUsersRepo(ApiHolder.api),
+            RetrofitReposUserRepo(
+                ApiHolder.api,
+                AndroidNetworkStatus(context!!),
+                RoomReposUserCache(GitHubDatabase.newInstance() as GitHubDatabase)
+            ),
             GitHubApp.instance.router
         )
     }

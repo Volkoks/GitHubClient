@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubclient.app.GitHubApp
 import com.example.githubclient.R
 import com.example.githubclient.mvp.model.APP_NAME
-import com.example.githubclient.mvp.model.api.ApiHolder
+import com.example.githubclient.mvp.model.cache.room.RoomUsersCache
+import com.example.githubclient.mvp.model.retrofit.api.ApiHolder
 import com.example.githubclient.mvp.model.loader.GlideImageLoader
 import com.example.githubclient.mvp.model.repository.RetrofitGitHubUsersRepo
+import com.example.githubclient.mvp.model.room.database.GitHubDatabase
 import com.example.githubclient.mvp.presenter.UsersPresenter
 import com.example.githubclient.mvp.view.UsersView
+import com.example.githubclient.network.AndroidNetworkStatus
 import com.example.githubclient.ui.BackButtonListener
 import com.example.githubclient.ui.adapter.UserRVAdapter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -31,7 +34,9 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
             AndroidSchedulers.mainThread(),
-            RetrofitGitHubUsersRepo(ApiHolder.api),
+            RetrofitGitHubUsersRepo(ApiHolder.api,AndroidNetworkStatus(context!!),
+               RoomUsersCache(GitHubDatabase.newInstance() as GitHubDatabase)
+            ),
             GitHubApp.instance.router
         )
     }

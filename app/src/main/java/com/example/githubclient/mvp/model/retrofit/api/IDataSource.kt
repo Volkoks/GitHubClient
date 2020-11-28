@@ -1,7 +1,7 @@
-package com.example.githubclient.mvp.model.api
+package com.example.githubclient.mvp.model.retrofit.api
 
-import com.example.githubclient.mvp.model.entity.GitHubUser
-import com.example.githubclient.mvp.model.entity.ReposGitHubUser
+import com.example.githubclient.mvp.model.retrofit.entity.GitHubUser
+import com.example.githubclient.mvp.model.retrofit.entity.ReposGitHubUser
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

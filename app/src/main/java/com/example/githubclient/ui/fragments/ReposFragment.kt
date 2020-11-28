@@ -1,16 +1,14 @@
 package com.example.githubclient.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.githubclient.R
 import com.example.githubclient.app.GitHubApp
 import com.example.githubclient.mvp.model.REPOS_USER
-import com.example.githubclient.mvp.model.entity.ReposGitHubUser
+import com.example.githubclient.mvp.model.retrofit.entity.ReposGitHubUser
 import com.example.githubclient.mvp.presenter.ReposUserPresenter
-import com.example.githubclient.mvp.presenter.UserPresenter
 import com.example.githubclient.mvp.view.ReposUserView
 import com.example.githubclient.ui.BackButtonListener
 import kotlinx.android.synthetic.main.fragment_repos.*
