@@ -1,4 +1,4 @@
-package com.example.githubclient.mvp.model.entity
+package com.example.githubclient.mvp.model.retrofit.entity
 
 import android.os.Parcelable
 import com.google.gson.annotations.Expose

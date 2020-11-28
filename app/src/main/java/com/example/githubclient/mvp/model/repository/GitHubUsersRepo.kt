@@ -1,6 +1,6 @@
 package com.example.githubclient.mvp.model.repository
 
-import com.example.githubclient.mvp.model.entity.GitHubUser
+import com.example.githubclient.mvp.model.retrofit.entity.GitHubUser
 import io.reactivex.rxjava3.core.Observable
 
 class GitHubUsersRepo {

@@ -1,4 +1,4 @@
-package com.example.githubclient.mvp.model.api
+package com.example.githubclient.mvp.model.retrofit.api
 
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
