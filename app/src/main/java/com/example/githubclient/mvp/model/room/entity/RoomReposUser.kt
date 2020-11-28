@@ -23,6 +23,6 @@ data class RoomReposUser(
     @ColumnInfo
     var description: String,
     @ColumnInfo
-    var userId: String
+    var userId: String? = null
 ) {
 }

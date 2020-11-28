@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubclient.app.GitHubApp
 import com.example.githubclient.R
 import com.example.githubclient.mvp.model.APP_NAME
+import com.example.githubclient.mvp.model.cache.room.RoomUsersCache
 import com.example.githubclient.mvp.model.retrofit.api.ApiHolder
 import com.example.githubclient.mvp.model.loader.GlideImageLoader
 import com.example.githubclient.mvp.model.repository.RetrofitGitHubUsersRepo
@@ -34,7 +35,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
         UsersPresenter(
             AndroidSchedulers.mainThread(),
             RetrofitGitHubUsersRepo(ApiHolder.api,AndroidNetworkStatus(context!!),
-                GitHubDatabase.newInstance() as GitHubDatabase
+               RoomUsersCache(GitHubDatabase.newInstance() as GitHubDatabase)
             ),
             GitHubApp.instance.router
         )
