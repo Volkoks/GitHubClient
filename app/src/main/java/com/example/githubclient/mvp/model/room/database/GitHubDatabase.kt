@@ -13,18 +13,7 @@ import java.lang.RuntimeException
 @Database(entities = [RoomUser::class, RoomReposUser::class], version = 1)
 abstract class GitHubDatabase : RoomDatabase() {
     companion object {
-        private const val DB_NAME = "database.db"
-        private var instance: GitHubDatabase? = null
-        fun newInstance() = instance ?: RuntimeException("База данных не создана!")
-        fun create(context: Context) {
-            if (instance == null) {
-                instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    GitHubDatabase::class.java,
-                    DB_NAME
-                ).build()
-            }
-        }
+        const val DB_NAME = "database.db"
     }
 abstract val userDao: RoomUserDao
 abstract val reposUserDao: RoomReposUserDao

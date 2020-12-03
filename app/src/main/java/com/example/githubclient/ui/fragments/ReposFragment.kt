@@ -14,21 +14,25 @@ import com.example.githubclient.ui.BackButtonListener
 import kotlinx.android.synthetic.main.fragment_repos.*
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
 
 class ReposFragment : MvpAppCompatFragment(), ReposUserView, BackButtonListener {
+
+    @Inject
+    lateinit var router: Router
+
     companion object {
-        fun newInstance(repos: ReposGitHubUser): ReposFragment {
-            val fragment = ReposFragment()
-            val bundle = Bundle()
-            bundle.putParcelable(REPOS_USER, repos)
-            fragment.arguments = bundle
-            return fragment
+        fun newInstance(repos: ReposGitHubUser) = ReposFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable(REPOS_USER, repos)
+            }
+            GitHubApp.instance.appComponent.inject(this)
         }
     }
-
     val presenter by moxyPresenter {
-        ReposUserPresenter(GitHubApp.instance.router)
+        ReposUserPresenter(router)
     }
 
     override fun onCreateView(
@@ -38,7 +42,7 @@ class ReposFragment : MvpAppCompatFragment(), ReposUserView, BackButtonListener 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-presenter.repos = arguments?.getParcelable(REPOS_USER)
+        presenter.repos = arguments?.getParcelable(REPOS_USER)
     }
 
 

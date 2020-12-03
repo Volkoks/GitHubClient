@@ -28,17 +28,16 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
 
 
     companion object {
-        fun newInstance() = UsersFragment()
+        fun newInstance() = UsersFragment().apply {
+            GitHubApp.instance.appComponent.inject(this)
+        }
     }
 
+
     val presenter: UsersPresenter by moxyPresenter {
-        UsersPresenter(
-            AndroidSchedulers.mainThread(),
-            RetrofitGitHubUsersRepo(ApiHolder.api,AndroidNetworkStatus(context!!),
-               RoomUsersCache(GitHubDatabase.newInstance() as GitHubDatabase)
-            ),
-            GitHubApp.instance.router
-        )
+        UsersPresenter().apply {
+            GitHubApp.instance.appComponent.inject(this)
+        }
     }
     var adapter: UserRVAdapter? = null
 
