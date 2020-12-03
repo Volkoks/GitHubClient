@@ -28,10 +28,5 @@ interface AppComponent {
     fun inject(mainPresenter: MainPresenter)
     fun inject(userPresenter: UserPresenter)
     fun inject(usersPresenter: UsersPresenter)
-
-
-    fun inject(reposFragment: ReposFragment)
-    fun inject(userFragment: UserFragment)
-    fun inject(usersFragment: UsersFragment)
-
+    fun inject(reposUserPresenter: ReposUserPresenter)
 }

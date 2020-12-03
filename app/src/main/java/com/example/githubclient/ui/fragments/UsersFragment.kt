@@ -29,7 +29,6 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
 
     companion object {
         fun newInstance() = UsersFragment().apply {
-            GitHubApp.instance.appComponent.inject(this)
         }
     }
 

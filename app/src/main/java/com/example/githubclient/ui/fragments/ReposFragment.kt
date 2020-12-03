@@ -20,19 +20,17 @@ import javax.inject.Inject
 
 class ReposFragment : MvpAppCompatFragment(), ReposUserView, BackButtonListener {
 
-    @Inject
-    lateinit var router: Router
-
     companion object {
         fun newInstance(repos: ReposGitHubUser) = ReposFragment().apply {
             arguments = Bundle().apply {
                 putParcelable(REPOS_USER, repos)
             }
-            GitHubApp.instance.appComponent.inject(this)
         }
     }
     val presenter by moxyPresenter {
-        ReposUserPresenter(router)
+        ReposUserPresenter().apply {
+            GitHubApp.instance.appComponent.inject(this)
+        }
     }
 
     override fun onCreateView(
