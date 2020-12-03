@@ -1,7 +1,11 @@
 package com.example.githubclient.app
 
 import android.app.Application
+import com.example.githubclient.di.component.AppComponent
+import com.example.githubclient.di.component.DaggerAppComponent
+import com.example.githubclient.di.module.AppModule
 import com.example.githubclient.mvp.model.room.database.GitHubDatabase
+import dagger.Component
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
 
@@ -11,21 +15,13 @@ class GitHubApp : Application() {
         lateinit var instance: GitHubApp
     }
 
-
-    private val cicerone: Cicerone<Router> by lazy {
-        Cicerone.create()
-    }
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
-        GitHubDatabase.create(this)
         super.onCreate()
         instance = this
-
+        appComponent = DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
     }
-
-    val router
-        get() = cicerone.router
-    val navigatorHolder
-        get() = cicerone.navigatorHolder
-
 }

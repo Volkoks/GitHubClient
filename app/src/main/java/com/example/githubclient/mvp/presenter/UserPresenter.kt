@@ -11,13 +11,21 @@ import com.example.githubclient.navigator.Screens
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
-class UserPresenter(
-    val mainThreadScheduler: Scheduler,
-    val usersRepo: IReposUserRepo,
-    val router: Router
-) :
-    MvpPresenter<UserView>() {
+class UserPresenter() : MvpPresenter<UserView>() {
+    @Inject
+    lateinit var mainThreadScheduler: Scheduler
+
+    @Inject
+    lateinit var usersRepo: IReposUserRepo
+
+    @Inject
+    lateinit var router: Router
+
+    val reposUserPresenter = ReposUserListPresenter()
+
+    var user: GitHubUser? = null
 
     class ReposUserListPresenter : IReposUserPresenter {
         var reposUserList = mutableListOf<ReposGitHubUser>()
@@ -32,8 +40,6 @@ class UserPresenter(
         override fun getCount() = reposUserList.size
     }
 
-    val reposUserPresenter = ReposUserListPresenter()
-    var user: GitHubUser? = null
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -49,11 +55,11 @@ class UserPresenter(
         user?.reposUrl?.let {
             usersRepo.getReposUser(it)
                 .observeOn(mainThreadScheduler)
-                .subscribe({repos->
+                .subscribe({ repos ->
                     reposUserPresenter.reposUserList.clear()
                     reposUserPresenter.reposUserList.addAll(repos)
                     viewState.updateList()
-                },{error->
+                }, { error ->
                     viewState.showError(error)
                 })
         }

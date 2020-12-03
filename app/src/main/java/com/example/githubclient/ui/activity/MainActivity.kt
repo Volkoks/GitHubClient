@@ -9,19 +9,27 @@ import com.example.githubclient.mvp.view.MainView
 import com.example.githubclient.ui.BackButtonListener
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
+import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
+import javax.inject.Inject
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
-    val presenter: MainPresenter by moxyPresenter { MainPresenter(GitHubApp.instance.router) }
+    val presenter: MainPresenter by moxyPresenter {
+        MainPresenter().apply {
+            GitHubApp.instance.appComponent.inject(this)
+        }
+    }
 
-    private val navigatorHolder = GitHubApp.instance.navigatorHolder
+    @Inject
+    lateinit var navigatorHolder :NavigatorHolder
     private val navigator = SupportAppNavigator(this, supportFragmentManager, R.id.container)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        GitHubApp.instance.appComponent.inject(this)
         val toolbar: Toolbar = findViewById(R.id.my_toolbar)
         setSupportActionBar(toolbar)
     }
